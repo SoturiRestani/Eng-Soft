@@ -37,7 +37,7 @@
     </style>
 </head>
 <body>
-<form action="{{route('contas.store')}}" method="post">
+<form action="{{route('salvar_contas')}}" method="post">
     {!!csrf_field() !!}
     Conta a Pagar<div><input type="text" name="conta"/></div><br><br>
     Pagamentos a Efetuar<div><input type="text" name="pagamento"/></div><br><br>

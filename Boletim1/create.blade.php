@@ -36,16 +36,20 @@
         }
     </style>
 </head>
+
 <body>
-<form action="{{route('atualizar_contas', [$contas->id])}}" method="post">
+<form action="{{route('salvar_boletim')}}" method="post"><br><br>
     {!!csrf_field() !!}
-    Conta<input type="text" name="conta" value="{{$contas->conta}}"/>
-    Pagamento<input type="text" name="pagamento" value="{{$contas->pagamento}}"/>
+    Aluno    <input type="text" name="nome"/><br><br>
+    Matricula <input type="text" name="matricula"/><br><br>
+    Notas    <input type="text" name="notas"/><br><br>
+    Faltas   <input type="text" name="frequencia"/><br><br>
+    Disciplina <input type="text" name="disciplina"/><br><br>
+    Bimestre <input type="text" name="bimestre"/><br><br>
     <button type="submit">Salvar</button>
 
 
 </form>
-
 
 
 </body>

@@ -37,14 +37,14 @@
     </style>
 </head>
 <body>
-<form action="{{route('atualizar_contas', [$contas->id])}}" method="post">
-    {!!csrf_field() !!}
-    Conta<input type="text" name="conta" value="{{$contas->conta}}"/>
-    Pagamento<input type="text" name="pagamento" value="{{$contas->pagamento}}"/>
-    <button type="submit">Salvar</button>
 
+@foreach($Alunos1 as $Alunos1)
+   <a href="{{route('editar_aluno', $Alunos1->id)}}">{{$Alunos1->nome}}</a>
+   <form action="{{route('remover_aluno')}}" method="post">
 
-</form>
+       <button type="submit">Deletar</button>
+   </form>
+@endforeach
 
 
 

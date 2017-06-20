@@ -37,7 +37,7 @@
     </style>
 </head>
 <body>
-<form action="{{route('turmas.update', [$turmas->id])}}" method="post">
+<form action="{{route('atualizar_turmas', [$turmas->id])}}" method="post">
     {!!csrf_field() !!}
     Turma<input type="text" name="turma" value="{{$turmas->turma}}"/>
     <button type="submit">Salvar</button>

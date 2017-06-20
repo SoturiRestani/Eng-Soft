@@ -37,7 +37,7 @@
     </style>
 </head>
 <body>
-<form action="{{route('turmas.store')}}" method="post">
+<form action="{{route('salvar_turmas')}}" method="post">
     {!!csrf_field() !!}
     Nome Alunos     <div><input type="text" name="nomeaunos"/></div><br><br>
     Professores    <div><input type="text" name="professores"/></div><br><br>

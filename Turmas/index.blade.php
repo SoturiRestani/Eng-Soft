@@ -39,8 +39,10 @@
 <body>
 
 @foreach($Turmas as $Turmas)
-   <a href="{{route('turmas.edit', $Turmas->id)}}">{{$Turmas->turma}}</a>
-   <form action="{{route('turmas.destroy', [$Turmas->id])}}" method="post">
+   <a href="{{route('editar_turmas', $Turmas->id)}}">
+       <div>{{$Turmas->nomealunos}}</div>
+       <div>{{$Turmas->professores}}</div></a>
+   <form action="{{route('remover_turmas', [$Turmas->id])}}" method="post">
        {!!csrf_field() !!}
        <button type="submit">Deletar</button>
    </form>

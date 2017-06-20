@@ -1,5 +1,7 @@
 <?php
 
+//Auth::user()->tipodeusuario != professor /
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,11 +14,6 @@
 */
 
 
-
-Route::get('/', function () {
-    return view('Inicio.inicio');
-});
-
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -27,99 +24,112 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 
-Route::group(['prefix' => 'usuarios', 'as'=> 'user.'],function(){
 
-    Route::get('/',['as'=>'index','uses'=>'UserController@index']);
-    Route::get('cadastro',['as'=>'create','uses'=>'UserController@create']);
-    Route::post('cadastrar/save',['as'=>'store','uses'=>'UserController@store']);
-    Route::get('alterar/{userid}',['as'=>'edit','uses'=>'UserController@edit']);
-    Route::post('editar/{userid}',['as'=>'update','uses'=>'UserController@update']);
-    Route::post('deletar/{userid}',['as'=>'destroy','uses'=>'UserController@destroy']);
-});
-Route::group(['prefix' => 'alunos', 'as'=> 'alunos.'],function(){
+Route::get('/', function ()
+{
+    if(!Auth::check())
+    {
+        return redirect('auth/login');
+    }
 
-    Route::get('/',['as'=>'index','uses'=>'AlunosController@index']);
-    Route::get('cadastro',['as'=>'create','uses'=>'AlunosController@create']);
-    Route::post('cadastrar/save',['as'=>'store','uses'=>'AlunosController@store']);
-    Route::get('alterar/{alunosid}',['as'=>'edit','uses'=>'AlunosController@edit']);
-    Route::post('editar/{alunosid}',['as'=>'update','uses'=>'AlunosController@update']);
-    Route::post('deletar/{alunosid}',['as'=>'destroy','uses'=>'AlunosController@destroy']);
+    return redirect()->route('index_usuario');
 });
 
-Route::group(['prefix' => 'boletim', 'as'=> 'boletim.'],function(){
 
-    Route::get('/', ['as' => 'index', 'uses' =>'BoletimController@index']);
-    Route::get('cadastro',['as'=>'create','uses'=>'BoletimController@create']);
-    Route::post('cadastrar/save',['as'=>'store','uses'=>'BoletimController@store']);
-    Route::get('alterar/{boletimid}',['as'=>'edit','uses'=>'BoletimController@edit']);
-    Route::post('editar/{boletimid}',['as'=>'update','uses'=>'BoletimController@update']);
-    Route::post('deletar/{boletimid}',['as'=>'destroy','uses'=>'BoletimController@destroy']);
+Route::group(['prefix' => 'usuario', 'middleware' => 'auth'],function(){
+
+    Route::get('/',['as'=>'index_usuario','uses'=>'User1Controller@index']);
+    Route::get('cadastro',['as'=>'cadastrar_usuario','uses'=>'User1Controller@create']);
+    Route::post('cadastrar/save',['as'=>'salvar_usuario','uses'=>'User1Controller@store']);
+    Route::get('alterar/{user1id}',['as'=>'editar_usuario','uses'=>'User1Controller@edit']);
+    Route::post('editar/{user1id}',['as'=>'atualizar_usuario','uses'=>'User1Controller@update']);
+    Route::post('deletar/{user1id}',['as'=>'remover_usuario','uses'=>'User1Controller@destroy']);
+
+Route::group(['prefix' => 'alunos'],function(){
+
+    Route::get('/',['as'=>'index_aluno','uses'=>'Alunos1Controller@index']);
+    Route::get('cadastro',['as'=>'cadastrar_aluno','uses'=>'Alunos1Controller@create']);
+    Route::post('cadastrar/save',['as'=>'salvar_aluno','uses'=>'Alunos1Controller@store']);
+    Route::get('alterar/{alunos1id}',['as'=>'editar_aluno','uses'=>'Alunos1Controller@edit']);
+    Route::post('editar/{alunos1id}',['as'=>'atualizar_aluno','uses'=>'Alunos1Controller@update']);
+    Route::post('deletar/{alunos1id}',['as'=>'remover_aluno','uses'=>'Alunos1Controller@destroy']);
+});
+
+Route::group(['prefix' => 'boletim'],function(){
+
+    Route::get('/', ['as' => 'index_boletim', 'uses' =>'Boletim1Controller@index']);
+    Route::get('cadastro',['as'=>'cadastrar_boletim','uses'=>'Boletim1Controller@create']);
+    Route::post('cadastrar/save',['as'=>'salvar_boletim','uses'=>'Boletim1Controller@store']);
+    Route::get('alterar/{boletimid}',['as'=>'editar_boletim','uses'=>'Boletim1Controller@edit']);
+    Route::post('editar/{boletimid}',['as'=>'atualizar_boletim','uses'=>'Boletim1Controller@update']);
+    Route::post('deletar/{boletimid}',['as'=>'remover_boletim','uses'=>'Boletim1Controller@destroy']);
 
     });
 
-Route::group(['prefix' => 'aulas', 'as'=> 'aulas.'],function(){
+Route::group(['prefix' => 'aulas'],function(){
 
-    Route::get('/', ['as' => 'index', 'uses' =>'AulasController@index']);
-    Route::get('cadastro',['as'=>'create','uses'=>'AulasController@create']);
-    Route::post('cadastrar/save',['as'=>'store','uses'=>'AulasController@store']);
-    Route::get('alterar/{aulasid}',['as'=>'edit','uses'=>'AulasController@edit']);
-    Route::post('editar/{aulasid}',['as'=>'update','uses'=>'AulasController@update']);
-    Route::post('deletar/{aulasid}',['as'=>'destroy','uses'=>'AulasController@destroy']);
-
-});
-
-Route::group(['prefix' => 'intervalo', 'as'=> 'intervalo.'],function(){
-
-    Route::get('/', ['as' => 'index', 'uses' =>'IntervaloController@index']);
-    Route::get('cadastro',['as'=>'create','uses'=>'IntervaloController@create']);
-    Route::post('salvar/save',['as'=>'store','uses'=>'IntervaloController@store']);
-    Route::get('alterar/{refeicaoid}',['as'=>'edit','uses'=>'IntervaloController@edit']);
-    Route::post('editar/{refeicaoid}',['as'=>'update','uses'=>'IntervaloController@update']);
-    Route::post('deletar/{refeicaoid}',['as'=>'destroy','uses'=>'IntervaloController@destroy']);
+    Route::get('/', ['as' => 'index_aulas', 'uses' =>'AulasController@index']);
+    Route::get('cadastro',['as'=>'cadastrar_aulas','uses'=>'AulasController@create']);
+    Route::post('cadastrar/save',['as'=>'salvar_aulas','uses'=>'AulasController@store']);
+    Route::get('alterar/{aulasid}',['as'=>'editar_aulas','uses'=>'AulasController@edit']);
+    Route::post('editar/{aulasid}',['as'=>'atualizar_aulas','uses'=>'AulasController@update']);
+    Route::post('deletar/{aulasid}',['as'=>'remover_aulas','uses'=>'AulasController@destroy']);
 
 });
 
-Route::group(['prefix' => 'funcionarios1', 'as'=> 'funcionarios1.'],function(){
+Route::group(['prefix' => 'intervalo'],function(){
 
-    Route::get('/', ['as' => 'index', 'uses' =>'Funcionarios1Controller@index']);
-    Route::get('cadastro',['as'=>'create','uses'=>'Funcionarios1Controller@create']);
-    Route::post('salvar/save',['as'=>'store','uses'=>'Funcionarios1Controller@store']);
-    Route::get('alterar/{funcionariosid}',['as'=>'edit','uses'=>'Funcionarios1Controller@edit']);
-    Route::post('editar/{funcionariosid}',['as'=>'update','uses'=>'Funcionarios1Controller@update']);
-    Route::post('deletar/{funcionariosid}',['as'=>'destroy','uses'=>'Funcionarios1Controller@destroy']);
-
-});
-
-Route::group(['prefix' => 'fornecedores', 'as'=> 'fornecedores.'],function(){
-
-    Route::get('/', ['as' => 'index', 'uses' =>'FornecedoresController@index']);
-    Route::get('cadastro',['as'=>'create','uses'=>'FornecedoresController@create']);
-    Route::post('salvar/save',['as'=>'store','uses'=>'FornecedoresController@store']);
-    Route::get('alterar/{fornecedoresid}',['as'=>'edit','uses'=>'FornecedoresController@edit']);
-    Route::post('editar/{fornecedoresid}',['as'=>'update','uses'=>'FornecedoresController@update']);
-    Route::post('deletar/{fornecedoresid}',['as'=>'destroy','uses'=>'FornecedoresController@destroy']);
+    Route::get('/', ['as' => 'index_intervalo', 'uses' =>'IntervaloController@index']);
+    Route::get('cadastro',['as'=>'cadastrar_intervalo','uses'=>'IntervaloController@create']);
+    Route::post('salvar/save',['as'=>'salvar_intervalo','uses'=>'IntervaloController@store']);
+    Route::get('alterar/{refeicaoid}',['as'=>'editar_intervalo','uses'=>'IntervaloController@edit']);
+    Route::post('editar/{refeicaoid}',['as'=>'atualizar_intervalo','uses'=>'IntervaloController@update']);
+    Route::post('deletar/{refeicaoid}',['as'=>'remover_intervalo','uses'=>'IntervaloController@destroy']);
 
 });
 
-Route::group(['prefix' => 'contas', 'as'=> 'contas.'],function(){
+Route::group(['prefix' => 'funcionarios'],function(){
 
-    Route::get('/', ['as' => 'index', 'uses' =>'ContasController@index']);
-    Route::get('cadastro',['as'=>'create','uses'=>'ContasController@create']);
-    Route::post('salvar/save',['as'=>'store','uses'=>'ContasController@store']);
-    Route::get('alterar/{contasid}',['as'=>'edit','uses'=>'ContasController@edit']);
-    Route::post('editar/{contasid}',['as'=>'update','uses'=>'ContasController@update']);
-    Route::post('deletar/{contasid}',['as'=>'destroy','uses'=>'ContasController@destroy']);
-
-});
-
-Route::group(['prefix' => 'turmas', 'as'=> 'turmas.'],function(){
-
-    Route::get('/', ['as' => 'index', 'uses' =>'TurmasController@index']);
-    Route::get('cadastro',['as'=>'create','uses'=>'TurmasController@create']);
-    Route::post('salvar/save',['as'=>'store','uses'=>'TurmasController@store']);
-    Route::get('alterar/{turmasid}',['as'=>'edit','uses'=>'TurmasController@edit']);
-    Route::post('editar/{turmasid}',['as'=>'update','uses'=>'TurmasController@update']);
-    Route::post('deletar/{turmasid}',['as'=>'destroy','uses'=>'TurmasController@destroy']);
+    Route::get('/', ['as' => 'index_funcionarios', 'uses' =>'Funcionarios1Controller@index']);
+    Route::get('cadastro',['as'=>'cadastrar_funcionarios','uses'=>'Funcionarios1Controller@create']);
+    Route::post('salvar/save',['as'=>'salvar_funcionarios','uses'=>'Funcionarios1Controller@store']);
+    Route::get('alterar/{funcionariosid}',['as'=>'editar_funcionarios','uses'=>'Funcionarios1Controller@edit']);
+    Route::post('editar/{funcionariosid}',['as'=>'atualizar_funcionarios','uses'=>'Funcionarios1Controller@update']);
+    Route::post('deletar/{funcionariosid}',['as'=>'remover_funcionarios','uses'=>'Funcionarios1Controller@destroy']);
 
 });
 
+Route::group(['prefix' => 'fornecedores'],function(){
+
+    Route::get('/', ['as' => 'index_fornecedores', 'uses' =>'FornecedoresController@index']);
+    Route::get('cadastro',['as'=>'cadastrar_fornecedores','uses'=>'FornecedoresController@create']);
+    Route::post('salvar/save',['as'=>'salvar_fornecedores','uses'=>'FornecedoresController@store']);
+    Route::get('alterar/{fornecedoresid}',['as'=>'editar_fornecedores','uses'=>'FornecedoresController@edit']);
+    Route::post('editar/{fornecedoresid}',['as'=>'atualizar_fornecedores','uses'=>'FornecedoresController@update']);
+    Route::post('deletar/{fornecedoresid}',['as'=>'remover_fornecedores','uses'=>'FornecedoresController@destroy']);
+
+});
+
+Route::group(['prefix' => 'contas'],function(){
+
+    Route::get('/', ['as' => 'index_contas', 'uses' =>'ContasController@index']);
+    Route::get('cadastro',['as'=>'cadastrar_contas','uses'=>'ContasController@create']);
+    Route::post('salvar/save',['as'=>'salvar_contas','uses'=>'ContasController@store']);
+    Route::get('alterar/{contasid}',['as'=>'editar_contas','uses'=>'ContasController@edit']);
+    Route::post('editar/{contasid}',['as'=>'atualizar_contas','uses'=>'ContasController@update']);
+    Route::post('deletar/{contasid}',['as'=>'remover_contas','uses'=>'ContasController@destroy']);
+
+});
+
+Route::group(['prefix' => 'turmas'],function(){
+
+    Route::get('/', ['as' => 'index_turmas', 'uses' =>'TurmasController@index']);
+    Route::get('cadastro',['as'=>'cadastrar_turmas','uses'=>'TurmasController@create']);
+    Route::post('salvar/save',['as'=>'salvar_turmas','uses'=>'TurmasController@store']);
+    Route::get('alterar/{turmasid}',['as'=>'editar_turmas','uses'=>'TurmasController@edit']);
+    Route::post('editar/{turmasid}',['as'=>'atualizar_turmas','uses'=>'TurmasController@update']);
+    Route::post('deletar/{turmasid}',['as'=>'remover_turmas','uses'=>'TurmasController@destroy']);
+
+});
+
+});

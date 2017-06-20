@@ -37,9 +37,12 @@
     </style>
 </head>
 <body>
-<form action="{{route('intervalo.update', [$intervalo->id])}}" method="post">
+<form action="{{route('atualizar_intervalo', [$intervalo->id])}}" method="post">
     {!!csrf_field() !!}
-    comida<input type="text" name="comida" value="{{$intervalo->comida}}"/>
+    Nome da Refeição<br><input type="text" name="nome" value="{{$intervalo->nome}}"/><br>
+    Valor da Refeição<br><input type="text" name="valorerefeicao" value="{{$intervalo->valorerefeicao}}"/><br>
+    Dia da Semana<br><input type="text" name="diadasemana" value="{{$intervalo->diadasemana}}"/><br>
+    Descrição<br><input type="text" name="descricao" value="{{$intervalo->descricao}}"/><br>
     <button type="submit">Salvar</button>
 
 

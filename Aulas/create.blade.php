@@ -37,7 +37,7 @@
     </style>
 </head>
 <body>
-<form action="{{route('aulas.store')}}" method="post">
+<form action="{{route('salvar_aulas')}}" method="post">
     {!!csrf_field() !!}
     Professor     <div><input type="text" name="nome"/></div><br><br>
     Disciplina    <div><input type="text" name="disciplina"/></div><br><br>

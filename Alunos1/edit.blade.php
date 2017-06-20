@@ -37,15 +37,20 @@
     </style>
 </head>
 <body>
-<form action="{{route('atualizar_contas', [$contas->id])}}" method="post">
+<form action="{{route('atualizar_aluno', [$alunos1->id])}}" method="post">
     {!!csrf_field() !!}
-    Conta<input type="text" name="conta" value="{{$contas->conta}}"/>
-    Pagamento<input type="text" name="pagamento" value="{{$contas->pagamento}}"/>
+    Nome<div><input type="text" name="nome" value="{{$alunos1->nome}}"/></div><br><br>
+    Rg<div><input type="text" name="rg" value="{{$alunos1->rg}}"/></div><br><br>
+    CPF<div><input type="text" name="cpf" value="{{$alunos1->cpf}}"/></div><br><br>
+    Email<div><input type="email" name="email" value="{{$alunos1->email}}"/></div><br><br>
+    Responsável<div><input type="text" name="responsavel" value="{{$alunos1->responsavel}}"/></div><br><br>
+    Endereço<div><input type="text" name="endereco" value="{{$alunos1->endereco}}"/></div><br><br>
+    Sexo<div><input type="text" name="sexo" value="{{$alunos1->sexo}}"/></div><br><br>
+    Turma<div><input type="text" name="truma" value="{{$alunos1->turma}}"/></div><br><br>
     <button type="submit">Salvar</button>
 
 
 </form>
-
 
 
 </body>

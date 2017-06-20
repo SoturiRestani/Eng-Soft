@@ -37,7 +37,7 @@
     </style>
 </head>
 <body>
-<form action="{{route('aulas.update', [$aulas->id])}}" method="post">
+<form action="{{route('atualizar_aulas', [$aulas->id])}}" method="post">
     {!!csrf_field() !!}
     horario<input type="text" name="horario" value="{{$aulas->horario}}"/>
     <button type="submit">Salvar</button>

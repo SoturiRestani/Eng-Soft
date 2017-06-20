@@ -39,8 +39,13 @@
 <body>
 
 @foreach($Intervalo as $Intervalo)
-   <a href="{{route('intervalo.edit', $Intervalo->id)}}">{{$Intervalo->comida}}</a>
-   <form action="{{route('intervalo.destroy', [$Intervalo->id])}}" method="post">
+   <a href="{{route('editar_intervalo', $Intervalo->id)}}">
+       <div>{{$Intervalo->nome}}</div>
+       <div>{{$Intervalo->valorrefeicao}}</div>
+       <div>{{$Intervalo->diadasemana}}</div>
+       <div>{{$Intervalo->descricao}}</div>
+       </a>
+   <form action="{{route('remover_intervalo', [$Intervalo->id])}}" method="post">
        {!!csrf_field() !!}
        <button type="submit">Deletar</button>
    </form>

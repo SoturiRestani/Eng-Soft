@@ -37,14 +37,16 @@
     </style>
 </head>
 <body>
-<form action="{{route('atualizar_contas', [$contas->id])}}" method="post">
-    {!!csrf_field() !!}
-    Conta<input type="text" name="conta" value="{{$contas->conta}}"/>
-    Pagamento<input type="text" name="pagamento" value="{{$contas->pagamento}}"/>
-    <button type="submit">Salvar</button>
 
-
-</form>
+@foreach($Users1 as $User1)
+   <a href="{{route('editar_usuario', $User1->id)}}">{{$User1->name}}</a>
+   <div>{{$User1->email}}</div>
+   <div>{{$User1->tipodeusuario}}</div>
+   <form action="{{route('remover_usuario', [$User1->id])}}" method="post">
+       {!!csrf_field() !!}
+       <button type="submit">Deletar</button>
+   </form>
+@endforeach
 
 
 

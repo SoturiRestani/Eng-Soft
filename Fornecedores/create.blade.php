@@ -1,6 +1,6 @@
 <html>
 <body>
-<form action="{{route('fornecedores.store')}}" method="post">
+<form action="{{route('salvar_fornecedores')}}" method="post">
     {!!csrf_field() !!}
     Nome Fantasia <div><input type="text" name="nome"/></div><br><br>
     Cnpj<div><input type="text" name="cnpj"/></div><br><br>

@@ -37,15 +37,15 @@
     </style>
 </head>
 <body>
-<form action="{{route('atualizar_contas', [$contas->id])}}" method="post">
+<form action="{{route('atualizar_boletim', [$boletim1->id])}}" method="post">
     {!!csrf_field() !!}
-    Conta<input type="text" name="conta" value="{{$contas->conta}}"/>
-    Pagamento<input type="text" name="pagamento" value="{{$contas->pagamento}}"/>
+    Notas<input type="text" name="notas" value="{{$boletim1->notas}}"/>
+    Frequência<input type="text" name="frequencia" value="{{$boletim1->frequencia}}"/>
+    Disciplina<input type="text" name="disciplina" value="{{$boletim1->disciplina}}"/>
     <button type="submit">Salvar</button>
 
 
 </form>
-
 
 
 </body>

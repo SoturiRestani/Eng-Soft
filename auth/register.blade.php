@@ -1,4 +1,6 @@
-<form method="POST" action="/auth/register">
+<!-- resources/views/auth/register.blade.php -->
+
+<form method="POST" action="register">
     {!! csrf_field() !!}
 
     <div>
@@ -19,6 +21,10 @@
     <div>
         Confirm Password
         <input type="password" name="password_confirmation">
+    </div>
+    <div>
+        Tipo de Usuário
+        <input type="text" name="tipodeusuario">
     </div>
 
     <div>

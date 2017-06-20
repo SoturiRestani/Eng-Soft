@@ -39,8 +39,8 @@
 <body>
 
 @foreach($Aulas as $Aulas)
-   <a href="{{route('aulas.edit', $Aulas->id)}}">{{$Aulas->nome}}{{$Aulas->disciplina}}{{$Aulas->diadasemana}}{{$Aulas->horario}}{{$Aulas->turma}}</a>
-   <form action="{{route('aulas.destroy', [$Aulas->id])}}" method="post">
+    <a href="{{route('editar_aulas', $Aulas->id)}}"><div>{{$Aulas->nome}}</div><div>{{$Aulas->disciplina}}</div><div>{{$Aulas->diadasemana}}</div><div>{{$Aulas->horario}}</div><div>{{$Aulas->turma}}</div></a>
+   <form action="{{route('remover_aulas', [$Aulas->id])}}" method="post">
        {!!csrf_field() !!}
        <button type="submit">Deletar</button>
    </form>

@@ -37,7 +37,7 @@
     </style>
 </head>
 <body>
-<form action="{{route('intervalo.store')}}" method="post">
+<form action="{{route('salvar_intervalo')}}" method="post">
     {!!csrf_field() !!}
     Nome da Refeiçao     <div><input type="text" name="nome"/></div><br><br>
     Valor da Refeiçao    <div><input type="text" name="valorrefeicao"/></div><br><br>

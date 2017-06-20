@@ -39,8 +39,15 @@
 <body>
 
 @foreach($Contas as $Contas)
-   <a href="{{route('contas.edit', $Contas->id)}}">{{$Contas->financa}}</a>
-   <form action="{{route('contas.destroy', [$Contas->id])}}" method="post">
+   <a href="{{route('editar_contas', $Contas->id)}}">
+       <div>{{$Contas->contas}}</div>
+       <div>{{$Contas->pagamento}}</div>
+       <div>{{$Contas->salarios}}</div>
+       <div>{{$Contas->gastos}}</div>
+       <div>{{$Contas->vencimentos}}</div>
+       <div>{{$Contas->valor}}</div>
+       <div>{{$Contas->descricao}}</div></a>
+   <form action="{{route('remover_contas', [$Contas->id])}}" method="post">
        {!!csrf_field() !!}
        <button type="submit">Deletar</button>
    </form>

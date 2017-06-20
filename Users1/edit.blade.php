@@ -37,15 +37,14 @@
     </style>
 </head>
 <body>
-<form action="{{route('atualizar_contas', [$contas->id])}}" method="post">
+<form action="{{route('atualizar_usuario', [$user1->id])}}" method="post">
     {!!csrf_field() !!}
-    Conta<input type="text" name="conta" value="{{$contas->conta}}"/>
-    Pagamento<input type="text" name="pagamento" value="{{$contas->pagamento}}"/>
+    nome<input type="text" name="name" value="{{$user1->name}}"/>
+    email<input type="email" name="email" value="{{$user1->email}}"/>
     <button type="submit">Salvar</button>
 
 
 </form>
-
 
 
 </body>
