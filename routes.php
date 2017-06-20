@@ -60,9 +60,9 @@ Route::group(['prefix' => 'boletim'],function(){
     Route::get('/', ['as' => 'index_boletim', 'uses' =>'Boletim1Controller@index']);
     Route::get('cadastro',['as'=>'cadastrar_boletim','uses'=>'Boletim1Controller@create']);
     Route::post('cadastrar/save',['as'=>'salvar_boletim','uses'=>'Boletim1Controller@store']);
-    Route::get('alterar/{boletimid}',['as'=>'editar_boletim','uses'=>'Boletim1Controller@edit']);
-    Route::post('editar/{boletimid}',['as'=>'atualizar_boletim','uses'=>'Boletim1Controller@update']);
-    Route::post('deletar/{boletimid}',['as'=>'remover_boletim','uses'=>'Boletim1Controller@destroy']);
+    Route::get('alterar/{boletim1id}',['as'=>'editar_boletim','uses'=>'Boletim1Controller@edit']);
+    Route::post('editar/{boletim1id}',['as'=>'atualizar_boletim','uses'=>'Boletim1Controller@update']);
+    Route::post('deletar/{boletim1id}',['as'=>'remover_boletim','uses'=>'Boletim1Controller@destroy']);
 
     });
 
@@ -129,7 +129,19 @@ Route::group(['prefix' => 'turmas'],function(){
     Route::get('alterar/{turmasid}',['as'=>'editar_turmas','uses'=>'TurmasController@edit']);
     Route::post('editar/{turmasid}',['as'=>'atualizar_turmas','uses'=>'TurmasController@update']);
     Route::post('deletar/{turmasid}',['as'=>'remover_turmas','uses'=>'TurmasController@destroy']);
-
 });
+
+Route::group(['prefix' => 'discente'],function(){
+    Route::get('/', ['as'=> 'index_discente', 'uses'=>'DiscenteController@index']);
+});
+    Route::group(['prefix' => 'professor'],function(){
+        Route::get('/', ['as'=> 'index_professor', 'uses'=>'ProfessorController@index']);
+
+    });
+    Route::group(['prefix' => 'diretor'],function(){
+        Route::get('/', ['as'=> 'index_diretor', 'uses'=>'DiretorController@index']);
+
+    });
+
 
 });
