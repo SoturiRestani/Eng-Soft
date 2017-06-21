@@ -36,6 +36,9 @@
         }
     </style>
 </head>
+<div >
+    <a href="{{url('http://localhost:8000/auth/logout')}}" style="margin: 900pt;top: 15px;"a>Logout</a >
+</div>
 <body>
 <form action="{{route('salvar_usuario')}}" method="post">
     {!!csrf_field() !!}
