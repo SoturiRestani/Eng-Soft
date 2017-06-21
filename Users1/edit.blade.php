@@ -11,6 +11,7 @@
             display: table;
             font-weight: 100;
             font-family: 'Lato';
+			font-weight:bold;
         }
 
 
@@ -36,13 +37,23 @@
         }
     </style>
 </head>
+<div >
+
+   <a href="{{urlrl('http://localhost:8000/auth/logout')}}" style=" margin: 900pt;top: 15px;font-size: 20px;color:#000000;
+    text-decoration: none;"a>Logout</a >
+</div>
 <body>
 <form action="{{route('atualizar_usuario', [$user1->id])}}" method="post">
-    {!!csrf_field() !!}
-    nome<input type="text" name="name" value="{{$user1->name}}"/>
-    email<input type="email" name="email" value="{{$user1->email}}"/>
-    <button type="submit">Salvar</button>
 
+    {!!csrf_field() !!}
+	<fieldset id="campo" style="background-color:#FFFFFF;width:200px;margin-left:500px;margin-top:15px;
+    ">
+	<legend>Alterar Usuario<br><br></legend>
+	
+   &emsp; &emsp;&emsp;&emsp; nome<br>&emsp;<input style="background-color: #a0fff0; border-color:black;" type="text" name="name" value="{{$user1->name}}"/><br>
+   &emsp; &emsp;&emsp;&emsp; email<br>&emsp;<input style="background-color: #a0fff0; border-color:black;" type="email" name="email" value="{{$user1->email}}"/><br><br>
+  &emsp;&emsp;&emsp;&emsp;  <button type="submit">Salvar</button>
+</fieldset>
 
 </form>
 
