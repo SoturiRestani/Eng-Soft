@@ -12,6 +12,7 @@
                 display: table;
                 font-weight: 100;
                 font-family: 'Lato';
+				font-weight:bold;
             }
 
 
@@ -38,17 +39,28 @@
         </style>
     </head>
 <body>
+<div >
+<a href="{{urlrl('http://localhost:8000/auth/logout')}}" style=" margin: 900pt;top: 15px;font-size: 20px;color:#000000;
+    text-decoration: none;"a>Logout</a >
+	</div>
+
+<fieldset style="background-color:#FFFFFF;width:250px;">
+<legend>Alterar Boletim<br><br></legend>
+
 
 @foreach($Boletim1 as $Boletim1)
-    <a href="{{route('editar_boletim', $Boletim1->id)}}"><div>{{$Boletim1->nome}}</a></div>
+ {!!csrf_field() !!}
+    <a href="{{route('editar_boletim', $Boletim1->id)}}">{{$Boletim1->nome}}</a>
     <div>{{$Boletim1->notas}}</div>
     <div>{{$Boletim1->frequencia}}</div></a>
-   <form action="{{route('remover_boletim', [$Boletim1->id])}}" method="post">
-       {!!csrf_field() !!}
-       <button type="submit">Deletar</button>
+	{!!csrf_field() !!}
+   <form action="{{route('remover_boletim', [$Boletim1->id])}}" method="post"><br>
+   
+      
+  &emsp;&emsp; &emsp;&emsp;&emsp;<button style="background-color:#a0fff0;"type="submit">Deletar</button>
    </form>
 @endforeach
-
+</fieldset>
 
 
 </body>
